@@ -52,11 +52,5 @@ public class SearchBookResponseDto {
 		this.status = status;
 	}
 	
-	public SearchBookResponseDto() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	
-	
 
 }

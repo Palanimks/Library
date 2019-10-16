@@ -10,11 +10,14 @@ import org.springframework.stereotype.Service;
 import com.hcl.lms.dto.SearchBookResponseDto;
 import com.hcl.lms.entity.Book;
 import com.hcl.lms.repository.BookRepository;
+
+import lombok.extern.slf4j.Slf4j;
 /**
  * 
  * @author Sushil 
  *
  */
+@Slf4j
 @Service 
 public class BookServiceImpl implements BookService {
 	
@@ -29,7 +32,7 @@ public class BookServiceImpl implements BookService {
      */
 	@Override
 	public List<SearchBookResponseDto> searchBookByBookTitleOrAuthor(String bookTitle, String author) {
-		
+		log.info("Inside searchBookByBookTitleOrAuthor of BookServiceImpl");
 		List<SearchBookResponseDto> responseDto= new ArrayList<>();
 		List<Book> books =null;
 		

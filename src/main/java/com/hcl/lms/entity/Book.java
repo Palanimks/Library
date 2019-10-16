@@ -59,15 +59,4 @@ public class Book {
 	public void setAuthor(String author) {
 		this.author = author;
 	}
-	
-	public Book() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	
-	
-	
-	
-	
-
 }

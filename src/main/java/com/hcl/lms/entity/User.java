@@ -61,11 +61,5 @@ public class User {
 	public void setMobileNumber(long mobileNumber) {
 		this.mobileNumber = mobileNumber;
 	}
-	public User() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	
-	
 
 }

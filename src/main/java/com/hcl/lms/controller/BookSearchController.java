@@ -30,10 +30,16 @@ public class BookSearchController {
 
 	@Autowired
 	BookService BookService;
-	
+	/**
+	 * This method is use to search book based on book title or author
+	 * @param bookTitle
+	 * @param author
+	 * @return List<SearchBookResponseDto>
+	 */
 	@GetMapping("/books")
 	public ResponseEntity<List<SearchBookResponseDto>> searchBookByTitleOrAuthor(@RequestParam(required = false) String bookTitle, @RequestParam(required = false) String author)
 	{
+		log.info("Inside searchBookByTitleOrAuthor of BookSearchController");
 		List<SearchBookResponseDto> response = BookService.searchBookByBookTitleOrAuthor(bookTitle, author);
 		
 		return new ResponseEntity<List<SearchBookResponseDto>>(response, HttpStatus.OK);
