@@ -13,26 +13,19 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-/**
- * @author Laxman
- * @date 16-Oct-2019
- * 
- */
 @Getter
 @Setter
-@Entity
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
-public class BookLending {
+@AllArgsConstructor
+@Entity
+public class BookRequest {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer bookLendingId;
+	private Integer bookRequestId;
 	private Integer userId;
 	private Integer bookId;
-	private LocalDate issuedDate;
-	private LocalDate dueDate;
-	private Integer status; // 1 Available, 0 not available/taken
-	private String remarks;
+	private LocalDate requestedDate;
+	private Integer status; //1 alloted 0 not alloted
 }
