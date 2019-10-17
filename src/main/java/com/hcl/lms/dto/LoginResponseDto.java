@@ -7,6 +7,10 @@ import lombok.Setter;
 @Setter
 @Getter
 @NoArgsConstructor
-public class UserRequestDto {
+public class LoginResponseDto {
 
+	private String status;
+	private String message;
+	private String firstName;
+	private Integer userId;
 }
