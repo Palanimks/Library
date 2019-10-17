@@ -91,7 +91,7 @@ public class BookServiceImpl implements BookService {
 					.status(0).remarks("").dueDate(LocalDate.now().plusDays(14)).build();
 			bookLendingRepository.save(bookLending);
 			responseDto.setMessage(bookRequestBookAlloted);
-			responseDto.setStatus(bookStatus);
+			responseDto.setStatus("Success");
 		}
 		return responseDto;
 	}
