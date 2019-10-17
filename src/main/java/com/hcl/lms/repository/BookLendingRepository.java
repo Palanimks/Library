@@ -1,5 +1,7 @@
 package com.hcl.lms.repository;
 
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -17,4 +19,7 @@ public interface BookLendingRepository extends JpaRepository<BookLending, Intege
 	Optional<BookLending> findByBookIdAndStatus(Integer bookId, Integer status);
 
 	Optional<BookLending> findByBookId(Integer bookId);
+	
+	List<BookLending> findByDueDate(LocalDate dueDate);
+	
 }
