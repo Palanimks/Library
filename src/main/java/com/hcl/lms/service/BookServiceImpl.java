@@ -8,11 +8,14 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.hcl.lms.dto.BookStatusResponseDto;
 import com.hcl.lms.dto.SearchBookResponseDto;
 import com.hcl.lms.entity.Book;
 import com.hcl.lms.entity.BookLending;
+import com.hcl.lms.exception.NoBookAvailableException;
 import com.hcl.lms.repository.BookLendingRepository;
 import com.hcl.lms.repository.BookRepository;
+import com.hcl.lms.utility.LibraryUtility;
 
 import lombok.extern.slf4j.Slf4j;
 /**
@@ -54,6 +57,27 @@ public class BookServiceImpl implements BookService {
 			});
 		}
 		
+		return responseDto;
+	}
+    /**
+     * This method is use to get status of book by book id
+     * @param bookId, not null
+     * @return BookStatusResponseDto
+     * @exception throws NoBookAvailableException if book id does not exist 
+     */
+	@Override
+	public BookStatusResponseDto getBookStatusByBookId(int bookId) {
+		BookStatusResponseDto responseDto;
+		Optional<BookLending> booklanding = bookLendingRepository.findByBookId(bookId);
+		if(booklanding.isPresent())
+		{
+		    responseDto = new BookStatusResponseDto();
+			BeanUtils.copyProperties(booklanding.get(), responseDto);
+		}
+		else
+		{
+			throw new NoBookAvailableException(LibraryUtility.NO_BOOK_AVAILABLE_EXCEPTION);
+		}
 		return responseDto;
 	}
 

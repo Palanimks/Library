@@ -7,10 +7,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hcl.lms.dto.BookStatusResponseDto;
 import com.hcl.lms.dto.SearchBookResponseDto;
 import com.hcl.lms.service.BookService;
 
@@ -44,6 +46,18 @@ public class BookSearchController {
 		List<SearchBookResponseDto> response = BookService.searchBookByBookTitleOrAuthor(bookTitle, author);
 		
 		return new ResponseEntity<List<SearchBookResponseDto>>(response, HttpStatus.OK);
+	}
+	   /**
+     * This method is use to get status of book by book id
+     * @param bookId, not null
+     * @return BookStatusResponseDto
+     */
+	@GetMapping("/books/{bookId}")
+	public ResponseEntity<BookStatusResponseDto> getBookStatusByBookId(@PathVariable int bookId)
+	{
+		log.info("Inside getBookStatusByBookId of BookSearchController");
+		BookStatusResponseDto response = BookService.getBookStatusByBookId(bookId);
+		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 
 }
