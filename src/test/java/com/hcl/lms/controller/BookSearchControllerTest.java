@@ -19,31 +19,31 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import com.hcl.lms.dto.BookStatusResponseDto;
 import com.hcl.lms.dto.SearchBookResponseDto;
 import com.hcl.lms.service.BookService;
 
 @RunWith(MockitoJUnitRunner.class)
 @WebAppConfiguration
 public class BookSearchControllerTest {
-	
+
 	private MockMvc mockMvc;
-	
+
 	@InjectMocks
 	BookSearchController bookSearchController;
-	
+
 	@Mock
 	BookService bookService;
-	
+
 	@Before
-    public void setup() {
-        MockitoAnnotations.initMocks(this);
-        this.mockMvc = MockMvcBuilders.standaloneSetup(bookSearchController).build();
-    }
-	
-	public List<SearchBookResponseDto> getBooks()
-	{
+	public void setup() {
+		MockitoAnnotations.initMocks(this);
+		this.mockMvc = MockMvcBuilders.standaloneSetup(bookSearchController).build();
+	}
+
+	public List<SearchBookResponseDto> getBooks() {
 		List<SearchBookResponseDto> responses = new ArrayList<>();
-		
+
 		SearchBookResponseDto bookResponse = new SearchBookResponseDto();
 		bookResponse.setAuthor("cs");
 		bookResponse.setBookId(101);
@@ -51,19 +51,37 @@ public class BookSearchControllerTest {
 		bookResponse.setCategory("Engineering");
 		bookResponse.setIsbn("4365265ygds");
 		bookResponse.setStatus(1);
-		
+
 		responses.add(bookResponse);
 		return responses;
 	}
-	
+
 	@Test
-	public void searchBookByTitleOrAuthorTest()
-	{
-		ResponseEntity<List<SearchBookResponseDto>> expResult = new ResponseEntity<List<SearchBookResponseDto>>(getBooks(), HttpStatus.OK);
-		Mockito.when(bookService.searchBookByBookTitleOrAuthor(Mockito.anyString(), Mockito.anyString())).thenReturn(getBooks());
-		
-		ResponseEntity<List<SearchBookResponseDto>> actResult = bookSearchController.searchBookByTitleOrAuthor("Mcgraw", "CS");
+	public void searchBookByTitleOrAuthorTest() {
+		ResponseEntity<List<SearchBookResponseDto>> expResult = new ResponseEntity<List<SearchBookResponseDto>>(
+				getBooks(), HttpStatus.OK);
+		Mockito.when(bookService.searchBookByBookTitleOrAuthor(Mockito.anyString(), Mockito.anyString()))
+				.thenReturn(getBooks());
+
+		ResponseEntity<List<SearchBookResponseDto>> actResult = bookSearchController.searchBookByTitleOrAuthor("Mcgraw",
+				"CS");
 		assertEquals(expResult.getStatusCode(), actResult.getStatusCode());
+	}
+
+	@Test
+	public void getBookStatusByBookIdTest() {
+		BookStatusResponseDto responseDto = new BookStatusResponseDto();
+		responseDto.setBookId(101);
+		responseDto.setStatus(1);
+		responseDto.setUserId(110);
+		ResponseEntity<BookStatusResponseDto> expResult = new ResponseEntity<BookStatusResponseDto>(responseDto,
+				HttpStatus.OK);
+
+		Mockito.when(bookService.getBookStatusByBookId(Mockito.anyInt())).thenReturn(responseDto);
+
+		ResponseEntity<BookStatusResponseDto> response = bookSearchController.getBookStatusByBookId(101);
+		
+		assertEquals(expResult.getStatusCode(), response.getStatusCode());
 	}
 
 }

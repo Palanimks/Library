@@ -74,7 +74,7 @@ public class BookServiceImplTest {
 		
 		Mockito.when(bookLendingRepository.findByBookId(Mockito.anyInt())).thenReturn(Optional.of(bookLending));
 		BookStatusResponseDto response = bookServiceImpl.getBookStatusByBookId(101);
-		//assertEquals(101, response.getBookId());
+		assertEquals(101, response.getBookId().intValue());
 	}
 
 }
