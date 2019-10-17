@@ -25,6 +25,7 @@ public class User {
 	private String email;
 	private String password;
 	private long mobileNumber;
+<<<<<<< HEAD
 	public int getUserId() {
 		return userId;
 	}
@@ -61,5 +62,7 @@ public class User {
 	public void setMobileNumber(long mobileNumber) {
 		this.mobileNumber = mobileNumber;
 	}
+=======
+>>>>>>> Feature3
 
 }
