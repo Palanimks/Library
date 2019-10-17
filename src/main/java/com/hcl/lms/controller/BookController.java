@@ -3,6 +3,7 @@ package com.hcl.lms.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,8 +40,16 @@ public class BookController {
 	 */
 	@PostMapping("/books")
 	public ResponseEntity<ResponseDto> addBook(@RequestBody BookDto bookDto) {
-		
+
 		log.info(" :: addBook() ----- ");
 		return new ResponseEntity<>(bookService.addBook(bookDto), HttpStatus.CREATED);
 	}
+
+	@PostMapping("/books/{bookId}/users/{userId}")
+	public ResponseEntity<ResponseDto> borrowBook(@PathVariable Integer bookId, @PathVariable Integer userId) {
+
+		log.info(" :: borrowBook() ---");
+		return new ResponseEntity<>(bookService.borrowBook(bookId, userId), HttpStatus.CREATED);
+	}
+
 }

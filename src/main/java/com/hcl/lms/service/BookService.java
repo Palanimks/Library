@@ -7,4 +7,6 @@ public interface BookService {
 
 	ResponseDto addBook(BookDto bookDto);
 
+	ResponseDto borrowBook(Integer bookId, Integer userId);
+
 }
