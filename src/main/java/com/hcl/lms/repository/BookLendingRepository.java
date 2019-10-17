@@ -13,11 +13,8 @@ import com.hcl.lms.entity.BookLending;
 public interface BookLendingRepository extends JpaRepository<BookLending, Integer> {
 
 	Long countByUserIdAndStatus(Integer userId, Integer status);
-	
-//	@Query("SELECT bookLend FROM BookLending bookLend WHERE bookId= :bookId AND dueDate >= CURRENT_DATE")
-//	Optional<BookLending> findByBookIdAndDueDateGreaterThenCurrentDate(Integer bookId);
-	
+
 	Optional<BookLending> findByBookIdAndStatus(Integer bookId, Integer status);
-	
+
 	Optional<BookLending> findByBookId(Integer bookId);
 }

@@ -2,10 +2,15 @@ package com.hcl.lms.service;
 
 import java.util.List;
 
+import com.hcl.lms.dto.BookDto;
+import com.hcl.lms.dto.ResponseDto;
 import com.hcl.lms.dto.SearchBookResponseDto;
 
 public interface BookService {
-	
-	public List<SearchBookResponseDto> searchBookByBookTitleOrAuthor(String bookTitle,String author);
 
+	ResponseDto addBook(BookDto bookDto);
+
+	ResponseDto borrowBook(Integer bookId, Integer userId);
+
+	public List<SearchBookResponseDto> searchBookByBookTitleOrAuthor(String bookTitle,String author);
 }
