@@ -48,4 +48,11 @@ public class BookControllerTest {
 		ResponseEntity<ResponseDto> actualResponseDto = bookController.addBook(bookDto);
 		assertEquals(201, actualResponseDto.getStatusCode().value());
 	}
+	
+	@Test
+	public void borrowBookTest() {
+		Mockito.when(bookServiceImpl.borrowBook(1010, 101)).thenReturn(responseDto);
+		ResponseEntity<ResponseDto> actualResponseDto = bookController.borrowBook(1010,101);
+		assertEquals(201, actualResponseDto.getStatusCode().value());
+	}
 }
