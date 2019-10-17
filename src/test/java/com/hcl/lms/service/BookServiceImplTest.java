@@ -14,6 +14,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import com.hcl.lms.dto.BookStatusResponseDto;
 import com.hcl.lms.dto.SearchBookResponseDto;
 import com.hcl.lms.entity.Book;
 import com.hcl.lms.entity.BookLending;
@@ -50,6 +51,9 @@ public class BookServiceImplTest {
 		bookLending = new BookLending();
 		bookLending.setBookId(101);
 		bookLending.setStatus(1);
+		bookLending.setRemarks("success");
+		
+		
 	}
 	
 	@Test
@@ -62,6 +66,15 @@ public class BookServiceImplTest {
 		List<SearchBookResponseDto> responses = bookServiceImpl.searchBookByBookTitleOrAuthor("cs", "abc");
 		
 		assertEquals(101, responses.get(0).getBookId());
+	}
+	
+	@Test
+	public void getBookStatusByBookIdTest()
+	{
+		
+		Mockito.when(bookLendingRepository.findByBookId(Mockito.anyInt())).thenReturn(Optional.of(bookLending));
+		BookStatusResponseDto response = bookServiceImpl.getBookStatusByBookId(101);
+		//assertEquals(101, response.getBookId());
 	}
 
 }
