@@ -1,6 +1,5 @@
-package com.hcl.lms.exception;
+package com.hcl.lms.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -8,9 +7,10 @@ import lombok.Setter;
 @Setter
 @Getter
 @NoArgsConstructor
-@AllArgsConstructor
-public class ErrorResponse {
+public class LoginResponseDto {
 
-	private String message;
 	private String status;
+	private String message;
+	private String firstName;
+	private Integer userId;
 }

@@ -9,7 +9,6 @@ import com.hcl.lms.entity.Book;
 
 @Repository
 public interface BookRepository extends JpaRepository<Book, Integer> {
-	
-	public List<Book> findByBookTitleOrAuthor(String bookTitle,String author);
 
+	public List<Book> findByBookTitleOrAuthor(String bookTitle, String author);
 }
